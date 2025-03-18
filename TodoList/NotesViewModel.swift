@@ -46,4 +46,8 @@ class NotesViewModel: ObservableObject {
         note.wrappedValue.isFavorite = !note.wrappedValue.isFavorite
         encodeAndSaveAllNotes()
     }
+    
+    func getNumberOfNotes() -> String {
+        return "\(notes.count)"
+    }
 }

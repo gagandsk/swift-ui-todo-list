@@ -61,6 +61,9 @@ struct ContentView: View {
         }
         .navigationTitle("TODO")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Text(notesViewModel.getNumberOfNotes())
+        }
         .padding()
     }
 }
