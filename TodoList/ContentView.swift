@@ -33,6 +33,31 @@ struct ContentView: View {
             .buttonStyle(.bordered)
             .tint(.green)
             Spacer()
+            List{
+                ForEach($notesViewModel.notes, id: \.id) { $note in
+                    HStack{
+                        if note.isFavorite {
+                            Text("⭐")
+                        }
+                        Text(note.description)
+                    }
+                    .swipeActions(edge: .trailing) {
+                        Button{
+                            notesViewModel.updateFavoriteNote(note: $note)
+                        } label: {
+                            Label("Favorito", systemImage: "star.fill")
+                        }
+                        .tint(.yellow)
+                    }.swipeActions(edge: .leading) {
+                        Button{
+                            notesViewModel.removeNote(withId: note.id)
+                        } label: {
+                            Label("Borrar", systemImage: "trash.fill")
+                        }
+                        .tint(.red)
+                    }
+                }
+            }
         }
         .navigationTitle("TODO")
         .navigationBarTitleDisplayMode(.inline)
