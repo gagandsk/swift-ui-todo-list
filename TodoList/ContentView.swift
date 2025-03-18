@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var descriptionNote: String = ""
+    @StateObject var notesViewModel = NotesViewModel()
     
     var body: some View {
         VStack {
@@ -26,7 +27,7 @@ struct ContentView: View {
                 .padding(.horizontal, 12)
                 .cornerRadius(3.0)
             Button("Crear") {
-                print("Creando nota...")
+                notesViewModel.saveNote(description: descriptionNote)
                 descriptionNote = ""
             }
             .buttonStyle(.bordered)
